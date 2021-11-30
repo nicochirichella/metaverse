@@ -2,7 +2,6 @@ import { AppComponents } from "../app/interfaces";
 import { Friendship, UserState } from "../entities/types";
 import { ServiceError } from "../utils/express-utils";
 import { groupUsersByDate, getUnrepeatedUsersBuckets, existPathInBucket, generateFriendshipsMap } from "../helpers/usersFunctions";
-import { CONNREFUSED } from "dns";
 
 export function friendshipsLogic({
   friendshipsRepo,
@@ -22,12 +21,10 @@ export function friendshipsLogic({
       let suggestionResult: boolean = false;
       let usersGroupedByDateInSameLand : Map<string, string[]> = groupUsersByDate(usersInSamePositions);
       
-      console.log(usersGroupedByDateInSameLand);
       if (await friendshipsRepo.exists(friendship) || friendship.userAddress1 == friendship.userAddress2)
         return { shouldSuggest: false };
       
       let unrepeatedBuckets = getUnrepeatedUsersBuckets(usersGroupedByDateInSameLand);
-      console.log(unrepeatedBuckets);  
 
       let allFriendships = await friendshipsRepo.getAll();
       let friendshipsMap: Map<string, boolean> = generateFriendshipsMap(allFriendships);

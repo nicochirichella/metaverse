@@ -41,9 +41,9 @@ export function generateFriendshipsMap(frienshipList: Friendship[]): Map<string,
     return friendshipsMap;
 }
 
-function dfaAlgorithm(firstNode: string, lastNode: string, visitNodes: Map<string, boolean>,
+export function dfaAlgorithm(firstNode: string, lastNode: string, visitNodes: Map<string, boolean>,
                     bucketNodes: string[], friendshipsMap: Map<string, boolean>): boolean{
-    visitNodes.set(firstNode, true);                        
+    visitNodes.set(firstNode, true);
     let nodeFriends: string[] = bucketNodes.filter(node => {
         let key = generateFriendshipKey({userAddress1: node, userAddress2: firstNode});
         return friendshipsMap.has(key);
@@ -65,6 +65,5 @@ function dfaAlgorithm(firstNode: string, lastNode: string, visitNodes: Map<strin
 
 export function existPathInBucket(friendship: Friendship, friendshipsMap: Map<string, boolean>, bucket: string[]): boolean {
     let visitNodes = new Map<string, boolean>();
-    console.log('entre a existPathInBucket');
     return dfaAlgorithm(friendship.userAddress1, friendship.userAddress2, visitNodes, bucket, friendshipsMap);
 }
