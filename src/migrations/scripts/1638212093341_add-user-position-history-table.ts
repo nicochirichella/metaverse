@@ -7,8 +7,8 @@ export const shorthands: ColumnDefinitions | undefined = undefined;
 export async function up(pgm: MigrationBuilder): Promise<void> {
     pgm.createTable("usersPositionHistory", {
         userAddress: { type: "text", primaryKey: true },
-        date: { type: "timestamp", primaryKey: true },
-        position: { type: "jsonb"  },
+        date: { type: "timestamp", primaryKey: true , default: pgm.func('NOW()') },
+        position: { type: "jsonb" },
     });
 }
 

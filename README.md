@@ -74,4 +74,6 @@ Replacing `DATABASE_URL` with a valid url if the credentials are different than 
 ### Reverting migrations
 
 `DATABASE_URL=postgres://postgres:12345678@localhost:5432/users_tracker npm run migrate down`
-# metaverse
+
+
+
