@@ -35,7 +35,8 @@ export function createUsersPositionHistoryRepo(db: Database): UsersPositionHisto
                 'and u."userAddress" != u2."userAddress" ' +
                 'and u.position = u2.position ' +
             "where u.\"userAddress\" = '"+ friendship.userAddress1 +
-            "' and u2.\"userAddress\" = '" +friendship.userAddress2 +"') " +
+            "' and u2.\"userAddress\" = '" +friendship.userAddress2 +"' "+
+            "and u.date > date(now() - interval '2 hour')) " +
         'select u."userAddress", u.position, u.date ' +
         'from "usersPositionHistory" u join t ' +
         'on u.position = t.position and u.date = t.date '+
