@@ -19,12 +19,12 @@ export function friendshipsLogic({
 
     async suggestFriendship(friendship: Friendship, usersInSamePositions: UserState[]) {
       let suggestionResult: boolean = false;
-      let usersGroupedByDateInSameLand : Map<string, string[]> = groupUsersByDate(usersInSamePositions);
+      let usersGroupedByDateInSameParcel : Map<string, string[]> = groupUsersByDate(usersInSamePositions);
       
       if (await friendshipsRepo.exists(friendship) || friendship.userAddress1 == friendship.userAddress2)
         return { shouldSuggest: false };
       
-      let unrepeatedBuckets = getUnrepeatedUsersBuckets(usersGroupedByDateInSameLand);
+      let unrepeatedBuckets = getUnrepeatedUsersBuckets(usersGroupedByDateInSameParcel);
 
       let allFriendships = await friendshipsRepo.getAll();
       let friendshipsMap: Map<string, boolean> = generateFriendshipsMap(allFriendships);

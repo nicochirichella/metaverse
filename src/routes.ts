@@ -53,10 +53,10 @@ export async function configureRoutes(
       "/suggest-friendship/:address1/:address2",
       asyncHandler(async (req, res) => {
         let possibleFriendship: Friendship = { userAddress1: req.params.address1, userAddress2: req.params.address2 }
-        let allUsersInSamePosition: UserState[] = await usersPositionHistory.getUsersPositionsForFriendshipSuggestion(possibleFriendship);
+        let allUsersInSameParcels: UserState[] = await usersPositionHistory.getUsersPositionsForFriendshipSuggestion(possibleFriendship);
         
         res.send(
-          await friendships.suggestFriendship(possibleFriendship, allUsersInSamePosition)
+          await friendships.suggestFriendship(possibleFriendship, allUsersInSameParcels)
         );
       }, components)
     );

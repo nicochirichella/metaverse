@@ -42,7 +42,7 @@ export function generateFriendshipsMap(frienshipList: Friendship[]): Map<string,
 }
 
 export function dfaAlgorithm(firstNode: string, lastNode: string, visitNodes: Map<string, boolean>,
-                    bucketNodes: string[], friendshipsMap: Map<string, boolean>): boolean{
+                    bucketNodes: string[], friendshipsMap: Map<string, boolean>): boolean {
     visitNodes.set(firstNode, true);
     let nodeFriends: string[] = bucketNodes.filter(node => {
         let key = generateFriendshipKey({userAddress1: node, userAddress2: firstNode});

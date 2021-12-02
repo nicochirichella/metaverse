@@ -28,17 +28,16 @@ The server currently has three services:
 * GET `/status`: Returns server status.
 * GET `/friendships`: Return the currently added friendships in the server.
 * POST `/friendships/{address1}/{address2}`: Creates a friendship between address 1 and address 2. No need to provide any body in the request.
-* POST `/users-update`: Updates position history of all users based in a body that containts the status of all the users in the metaverse (connected and disconnected)  
-history. needs a body like this one: body {
-                                            "moved": [ {
-                                                        "id": "{usserAddress1}",
-                                                        "position": {
-                                                            "x": 3,
-                                                            "y": 5
-                                                        }
-                                                    }...]        
-                                            "disconnected": ["{usserAddress}"...]
-                                        } 
+* POST `/users-update`: Creates a new position in position_history of all users based in a body that containts the status of all the users in the metaverse (connected and disconnected). needs a body like this one: body {
+                    "moved": [ {
+                                "id": "{usserAddress1}",
+                                "position": {
+                                    "x": 3,
+                                    "y": 5
+                                }
+                            }...]        
+                    "disconnected": ["{usserAddress}"...]
+                } 
 * GET `/suggest-friendship/{address1}/{address2}`: return if we should suggest a friendship between 2 addresses that are not currently friends. Will return TRUE if in the last 2 hours there was a moment with a group of users that were friends among them and created this "friendship connection" between address1 and address2.
 
 To create friendships for testing, you can use any tool that can perform a `POST`.
